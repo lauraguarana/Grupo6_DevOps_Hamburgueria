@@ -15,7 +15,5 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: sampleapp.tricentis.com
-        username: your-ssh-username
-        password: your-ssh-password
         script: |
           curl -I http://sampleapp.tricentis.com/101/
