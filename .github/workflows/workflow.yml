@@ -1,4 +1,4 @@
-name: Acessar site http://sampleapp.tricentis.com/101/
+name: Editar arquivo
 
 on:
   push:
@@ -7,15 +7,30 @@ on:
     branches: [ main ]
 
 jobs:
-  access-site:
+  edit-file:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Acessar o site
-      uses: appleboy/ssh-action@master
+    - name: Checkout repositório
+      uses: actions/checkout@v2
+
+    - name: Configurar ambiente Node.js
+      uses: actions/setup-node@v2-beta
       with:
-        host: sampleapp.tricentis.com
-        username: your-ssh-username
-        password: your-ssh-password
-        script: |
-          curl -I http://sampleapp.tricentis.com/101/
+        node-version: '16'
+
+    - name: Abrir arquivo
+      run: |
+        touch exemplo.txt
+        echo "Esse é um exemplo de arquivo." > exemplo.txt
+        cat exemplo.txt
+
+    - name: Editar arquivo
+      run: |
+        sed -i 's/exemplo/arquivo de teste/g' exemplo.txt
+        cat exemplo.txt
+
+    - name: Salvar arquivo
+      run: |
+        echo "Nova linha adicionada." >> exemplo.txt
+        cat exemplo.txt
