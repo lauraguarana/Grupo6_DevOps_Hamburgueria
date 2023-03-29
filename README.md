@@ -1,1 +1,1 @@
-# Grupo6_DevOps_Hamburgueria
+# Grupo6_DevOps_Netflix
